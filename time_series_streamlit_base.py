@@ -6,7 +6,10 @@ from streamlit_time_series import *
 
 st.header("Time Series Analysis")
 
-ticker = st.text_input("Please enter ticker here:")
+ticker = st.text_input("Please enter ticker here: (for S&P 500 enter ^GSPC)")
+
+frequency_options = ["daily", "weekly", "monthly"]
+frequency_box = st.selectbox("select the frequency of prices (default is daily)", frequency_options)
 
 status_radio = st.radio('Please click Search when you are ready.', ('Entry', 'Search'))
 
@@ -24,9 +27,18 @@ if start_date < end_date:
 else:
     st.sidebar.error('Error: End date must fall after start date.')
 
+if frequency_box == "daily":
+    frequency = "1d"
+    
+if frequency_box == "weekly":
+    frequency = "1wk"
+    
+if frequency_box == "monthly":
+    frequency = "1mo"
+    
 if status_radio == "Search":
 
-    df = yf.download(ticker, start_date, end_date)
+    df = yf.download(ticker, start_date, end_date, interval = frequency)
     df_plot = df[['Close', 'Adj Close']]
     st.line_chart(df_plot)
     st.write(df)
