@@ -23,7 +23,7 @@ else:
     
 if sidebar == "tools":
     
-    ticker = st.text_input("Please enter ticker here:")
+    ticker = st.text_input("Please enter ticker below. (For SPX use ^GSPC and for VIX use ^VIX)")
     status_radio = st.radio('Please click Search when you are ready.', ('Entry', 'Search'))
     
     options = ['historical regime', 'smoothed variance probability', 'continuous wavelet transform', 'all']
