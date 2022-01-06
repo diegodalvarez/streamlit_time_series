@@ -7,7 +7,7 @@ from streamlit_time_series import *
 
 st.header("Time Series Analysis")
 
-sidebar_options = ['tools', 'expirement']
+sidebar_options = ['expirement', 'tools']
 sidebar = st.sidebar.selectbox("Select Option", sidebar_options)
 
 today = dt.date.today()
